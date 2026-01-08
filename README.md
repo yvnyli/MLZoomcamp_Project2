@@ -22,3 +22,18 @@ Therefore, the goal of the project is to build a model that can **predict Metacr
 The 3910 games with ground-truth Metacritic scores are used for training (tuning), validation and testing. I will try different classes of models and tune their hyperparameter. The winning model based on validation accuracy will be used to predict Metacritic scores on games that don't have it. The accuracy of the predictions should be similar to the accuracy on the test set.
 
 Optinal: train a classifier for probability of having Metacritic score. The idea is, predicted score might be reliable for games similar to the training games, but unreliable for games that are more different. The probability measures this similarity.
+
+
+
+
+
+
+TODO:
+
+Try out `from ydata_profiling import ProfileReport`
+
+Do multi-hot encoding with `from sklearn.preprocessing import MultiLabelBinarizer` to columns like languages, tags and genres.
+
+Do some kind of embedding for text like description and reviews.
+
+Do some kind of embedding for images.
