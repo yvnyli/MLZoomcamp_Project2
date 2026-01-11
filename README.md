@@ -25,12 +25,61 @@ Optinal: train a classifier for probability of having Metacritic score. The idea
 
 
 
+Notes while EDA
 
+(%null in parentheses)
+ID (unique key): appid
+Paragraph text columns: 
+  about_the_game(4), 
+  notes(85),
+  reviews(88),
+Short text columns:
+  developers(4),
+  name(6 rows are null),
+  publishers,
+Numeric columns: 
+  achievements, 
+  average_playtime_forever, 
+  average_playtime_two_weeks, 
+  dlc_count,
+  median_playtime_forever,
+  median_playtime_two_weeks,
+  **metacritic_score** (no null, missing values are 0)
+  negative,
+  peak_ccu,
+  positive,
+  price,
+  recommendations,
+  required_age (only 19 unique values),
+  score_rank(99.9% NaN) (only 4 unique values),
+  user_score,
+Date:
+  release_date
+Multi categorical:
+  categories(5) (comma separated),
+  full_audio_languages(no null but there are empty lists) (comma separated single quote),
+  genres(4) (comma separated),
+  supported_languages (comma separated single quote),
+  tags(24) (comma separated),
+Single categorical:
+  estimated_owners (14 unique values),
+Image url:
+  header_image,
+  screenshots(2)
+Boolean:
+  linux,
+  mac,
+  windows
+Other:
+  metacritic_url(95)
+  movies(7.5)
+  support_email(16)
+  support_url(51)
+  website(53)
+  
 
 
 TODO:
-
-Try out `from ydata_profiling import ProfileReport`
 
 Do multi-hot encoding with `from sklearn.preprocessing import MultiLabelBinarizer` to columns like languages, tags and genres.
 
