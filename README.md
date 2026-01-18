@@ -1,5 +1,7 @@
-# MLZoomcamp_Project2
-Second project for ML Zoomcamp 2025
+# Steam Game Critic Score
+Give ~80K games a score similar to Metacritic. See what the model says about your favorite games. Check out a game's score before you buy.
+
+ML Zoomcamp 2025: If you are here for peer review, please check out [Guide_for_evaluators.md](https://github.com/yvnyli/MLZoomcamp_Project2/blob/main/Guide_for_evaluators.md) for a map of where things are. Thank you.
 
 ## Dataset:
 
@@ -19,72 +21,31 @@ Therefore, the goal of the project is to build a model that can **predict Metacr
 
 ## Modeling Strategy:
 
-The 3910 games with ground-truth Metacritic scores are used for training (tuning), validation and testing. I will try different classes of models and tune their hyperparameter. The winning model based on validation accuracy will be used to predict Metacritic scores on games that don't have it. The accuracy of the predictions should be similar to the accuracy on the test set.
+The **3910 games with ground-truth Metacritic scores** are used for training (validation and tuning) and testing. I will try different classes of models and tune their hyperparameter. The winning model based on test accuracy will be used to predict Metacritic scores on games that don't have it. The accuracy of the predictions should be similar to the accuracy on the test set.
 
-Optinal: train a classifier for probability of having Metacritic score. The idea is, predicted score might be reliable for games similar to the training games, but unreliable for games that are more different. The probability measures this similarity.
+Bonus: I also train a classifier for probability of having Metacritic score. The idea is, predicted score might be reliable for games similar to the training games, but unreliable for games that are more different. The probability measures this similarity. I then labeled games into 4 **confidence tiers**: very low, low, medium, and high, which puts a grain of salt on the interpretation of the scores.
 
 
+## Results: 
 
-Notes while EDA
+Data processing: 
+- Numerics: There are 15 numerical columns. In all of them, the dominant mode is 0, making the rest of the distribution hard to see/take into effect. So I made two features out of each column. One is a binary indicating whether the value is zero (zero actually means missing data in many of them). The other is the value, with log transformation applied for performance.
 
-(%null in parentheses)
-ID (unique key): appid
-Paragraph text columns: 
-  about_the_game(4), 
-  notes(85),
-  reviews(88),
-Short text columns:
-  developers(4),
-  name(6 rows are null),
-  publishers,
-Numeric columns: 
-  achievements, 
-  average_playtime_forever, 
-  average_playtime_two_weeks, 
-  dlc_count,
-  median_playtime_forever,
-  median_playtime_two_weeks,
-  **metacritic_score** (no null, missing values are 0)
-  negative,
-  peak_ccu,
-  positive,
-  price,
-  recommendations,
-  required_age (only 19 unique values),
-  score_rank(99.9% NaN) (only 4 unique values),
-  user_score,
-Date:
-  release_date
-Multi categorical:
-  categories(5) (comma separated),
-  full_audio_languages(no null but there are empty lists) (comma separated single quote),
-  genres(4) (comma separated),
-  supported_languages (comma separated single quote),
-  tags(24) (comma separated),
-Single categorical:
-  estimated_owners (14 unique values),
-Image url:
-  header_image,
-  screenshots(2)
-Boolean:
-  linux,
-  mac,
-  windows
-Other:
-  metacritic_url(95)
-  movies(7.5)
-  support_email(16)
-  support_url(51)
-  website(53)
+  ![Histograms of numerics](https://www.markdownlang.com/markdown-logo.png)
   
+- Release date: The only datetime column, which I turned into a numeric feature by subtracting the Epoch (days since 1/1/1970).
+- Multi-hot: There are 5 columns containing lists of categorical labels, which can be represented by multi-hot vectors. These columns are categories, genres, tags, languages, and audio languages. Word clouds below. The problem is that there are 732 multi-hot features out of the 5 columns, which is too many for our training data size (732:3910 is roughly 1:5). So I used SVD to reduce dimensionality down to 70 features. This also eliminated colinearity.
+
+Models: I trained linear (Elastic net), tree based (XGBoost), and neural network (multi-layer perceptron) regressors. Tuned hyperparameter for each model class on 5-fold CV of 85% data. The best XGBoost model had higher performance than the other two on the 15% testing data, and was used to make ~80K predictions.
 
 
-TODO:
+## Try it out:
 
-Do multi-hot encoding with `from sklearn.preprocessing import MultiLabelBinarizer` to columns like languages, tags and genres.
+Cloud deployment: 
 
-Do some kind of embedding for text like description and reviews. 
 
-Do some kind of embedding for images.
 
-[CLIP](https://github.com/openai/CLIP) can embed image and text into similar representation. Let's use this one.
+
+
+## Next ideas:
+There are some columns containing a lot of information that could not be used directly or by multi-hot encoding. These include description and reviews which are long form text, and header image, screenshots, and movies which are media. In the next step to improve my model, I would use a pretrained neural network to turn the text and media into embeddings, which are vectors (multiple numerical columns) that our models can use. I might use [CLIP](https://github.com/openai/CLIP), which can embed image and text into similar representation.
