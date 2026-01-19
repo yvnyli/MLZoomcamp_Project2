@@ -8,7 +8,7 @@ ML Zoomcamp 2025: If you are here for peer review, please check out [Guide_for_e
 
 **Local container**: The image is on Docker Hub as [yvnyli/steam-game-critic-score](https://hub.docker.com/r/yvnyli/steam-game-critic-score). You can search "yvnyli/steam-game-critic-score" on Docker Desktop and pull it, or run `docker pull yvnyli/steam-game-critic-score:1.0.0` in cmd. Once you have the image, you can run a container with `docker run -p 8080:8080 yvnyli/steam-game-critic-score:1.0.0`, and visit [http://localhost:8080/](http://localhost:8080/).
 
-**Cloud**: It is live [here](https://steam-game-critic-score-1023320639620.us-east1.run.app/).
+**Cloud**: It is live [here](https://steam-game-critic-score-1023320639620.us-east1.run.app/). This app is based on FastAPI, so you can go to `<url>/docs` to try out the functions. `/predict` takes information about a game and returns score prediction and confidence prediction. This is less fun because the expected information is really long (three examples are provided). `/search` is more fun, where you can enter a game title (or a keyword) and see games that match and their scores. Try and see if you and the model agree on your favorite game!
 
 ## Dataset:
 
