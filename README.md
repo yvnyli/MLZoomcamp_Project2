@@ -1,14 +1,19 @@
 # Steam Game Critic Score
 Give ~80K games a score similar to Metacritic. See what the model says about your favorite games. Check out a game's score before you buy.
 
+<div align="center">
+  <img src="https://github.com/yvnyli/MLZoomcamp_Project2/blob/main/images/preview.png" alt="sample games" width="850">
+</div>
+
 ML Zoomcamp 2025: If you are here for peer review, please check out [Guide_for_evaluators.md](https://github.com/yvnyli/MLZoomcamp_Project2/blob/main/Guide_for_evaluators.md) for a map of where things are. Thank you.
 
-### Setup (Windows):
-**Local venv**: Clone this repo. In cmd, cd to the folder, and run `uv sync --frozen`. If packages are installed successfully, activate the virtual environment with `.venv\Scripts\activate`, and run `jupyter lab` to launch jupyter. You can explore the notebooks in `notebooks/`.
+### How to run:
+**Cloud**: It is live [here](https://steam-game-critic-score-1023320639620.us-east1.run.app/). This app is based on FastAPI, so you can go to `<url>/docs` to try out the functions. `/predict` takes information about a game and returns score prediction and confidence prediction. This is less fun because the expected information is really long (three examples are provided). **`/search` is more fun**, where you can enter a game title (or a keyword) and see games that match and their scores. **Try it and see if you and the model agree on your favorite game!**
+
+**Local venv (windows)**: Clone this repo. In cmd, cd to the folder, and run `uv sync --frozen`. If packages are installed successfully, activate the virtual environment with `.venv\Scripts\activate`, and run `jupyter lab` to launch jupyter. You can explore the notebooks in `notebooks/`. The search functionality can be found in `notebooks/3_prediction.ipynb`.
 
 **Local container**: The image is on Docker Hub as [yvnyli/steam-game-critic-score](https://hub.docker.com/r/yvnyli/steam-game-critic-score). You can search "yvnyli/steam-game-critic-score" on Docker Desktop and pull it, or run `docker pull yvnyli/steam-game-critic-score:1.0.0` in cmd. Once you have the image, you can run a container with `docker run -p 8080:8080 yvnyli/steam-game-critic-score:1.0.0`, and visit [http://localhost:8080/](http://localhost:8080/).
 
-**Cloud**: It is live [here](https://steam-game-critic-score-1023320639620.us-east1.run.app/). This app is based on FastAPI, so you can go to `<url>/docs` to try out the functions. `/predict` takes information about a game and returns score prediction and confidence prediction. This is less fun because the expected information is really long (three examples are provided). `/search` is more fun, where you can enter a game title (or a keyword) and see games that match and their scores. Try and see if you and the model agree on your favorite game!
 
 ## Dataset:
 
