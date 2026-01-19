@@ -7,14 +7,14 @@ Please feel free to grade my project as you see fit.
 * Problem description
     * See `README.md`.
 * EDA
-    * See `./notebooks/0_EDA_preprocess.ipynb`.
+    * See `notebooks/0_EDA_preprocess.ipynb`.
 * Model training
-    * See `./notebooks/2_tune_models.ipynb`.
+    * See `notebooks/2_tune_models.ipynb`.
 * Exporting notebook to script
-    * See `2_training_final.py`.
+    * See `notebooks/train_best_XGBR.py`.
 * Reproducibility
-    * The dataset is `./data/steam_game_dataset.parquet`
-    * All the 4 notebooks in `./notebooks` can be run. The running time is stated at the top of each file.
+    * The dataset is `data/steam_game_dataset.parquet`
+    * All the 4 notebooks in `notebooks/` can be run. The running time is stated at the top of each file.
 * Model deployment
     * The model is deployed to the cloud. You can test it [here]().
 * Dependency and enviroment management
