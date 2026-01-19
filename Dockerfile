@@ -24,7 +24,8 @@ COPY models ./models
 COPY data ./data
 
 # Install dependencies exactly as locked in uv.lock, without updating them
-RUN uv sync --frozen --no-dev
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --no-dev
 
 # Expose TCP port 8080 so it can be accessed from outside the container
 EXPOSE 8080
