@@ -4,9 +4,11 @@ Give ~80K games a score similar to Metacritic. See what the model says about you
 ML Zoomcamp 2025: If you are here for peer review, please check out [Guide_for_evaluators.md](https://github.com/yvnyli/MLZoomcamp_Project2/blob/main/Guide_for_evaluators.md) for a map of where things are. Thank you.
 
 ### Setup (Windows):
-Environment: Clone this repo. In cmd, cd to the folder, and run `uv sync --frozen`. If packages are installed successfully, activate the virtual environment with `.venv\Scripts\activate`, and run `jupyter lab` to launch jupyter. You can explore the notebooks in `notebooks/`.
+**Local venv**: Clone this repo. In cmd, cd to the folder, and run `uv sync --frozen`. If packages are installed successfully, activate the virtual environment with `.venv\Scripts\activate`, and run `jupyter lab` to launch jupyter. You can explore the notebooks in `notebooks/`.
 
-Docker: 
+**Local container**: The image is on Docker Hub as [yvnyli/steam-game-critic-score](https://hub.docker.com/r/yvnyli/steam-game-critic-score). You can search "yvnyli/steam-game-critic-score" on Docker Desktop and pull it, or run `docker pull yvnyli/steam-game-critic-score:1.0.0` in cmd. Once you have the image, you can run a container with `docker run -p 8080:8080 yvnyli/steam-game-critic-score:1.0.0`, and visit [http://localhost:8080/](http://localhost:8080/).
+
+**Cloud**: It is live [here](https://steam-game-critic-score-1023320639620.us-east1.run.app/).
 
 ## Dataset:
 
@@ -101,7 +103,7 @@ You must be wondering, does the model performance really follow the confidence m
 
 ## Try it out on the cloud:
 
-Cloud deployment: 
+[https://steam-game-critic-score-1023320639620.us-east1.run.app/](https://steam-game-critic-score-1023320639620.us-east1.run.app/)
 
 
 
